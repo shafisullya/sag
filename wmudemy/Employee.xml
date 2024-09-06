@@ -1,0 +1,20 @@
+<?xml version="1.0"?>  
+<Employee>
+<EmpDetail>
+<EmpName>David</EmpName>
+<EmpID>042323</EmpID>
+<EmpDept>JOF</EmpDept>
+</EmpDetail>
+
+<EmpDetail>
+<EmpName>Peter</EmpName>
+<EmpID>042324</EmpID>
+<EmpDept>JOF</EmpDept>
+</EmpDetail>
+
+<EmpDetail>
+<EmpName>John</EmpName>
+<EmpID>042325</EmpID>
+<EmpDept>JOF</EmpDept>
+</EmpDetail>
+</Employee>

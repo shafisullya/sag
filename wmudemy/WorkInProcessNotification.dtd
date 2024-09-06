@@ -1,0 +1,401 @@
+<!--
+
+   RosettaNet XML Message Schema
+   3D8_MS_R01_00_WorkInProcessNotification.dtd (16-Nov-2000 15:36)
+   This document has been prepared by Edifecs (http://www.edifecs.com/)
+   based On the Business Collaboration Framework from requirements
+   in conformance with the RosettaNet methodology.
+
+-->
+
+
+<!ENTITY % common-attributes "id  CDATA #IMPLIED" >
+ 
+<!ELEMENT Pip3D8WorkInProcessNotification ( 
+          fromRole ,
+          GlobalDocumentFunctionCode ,
+          thisDocumentGenerationDateTime ,
+          thisDocumentIdentifier ,
+          toRole ,
+          WorkInProcess+ ) > 
+
+<!ELEMENT fromRole
+            ( PartnerRoleDescription ) > 
+
+<!ELEMENT PartnerRoleDescription ( 
+          ContactInformation? ,
+          GlobalPartnerRoleClassificationCode ,
+          PartnerDescription ) > 
+
+<!ELEMENT ContactInformation ( 
+          contactName ,
+          EmailAddress ,
+          facsimileNumber? ,
+          telephoneNumber ) > 
+
+<!ELEMENT contactName
+           ( FreeFormText ) > 
+
+<!ELEMENT FreeFormText
+           ( #PCDATA ) >
+<!ATTLIST FreeFormText
+           xml:lang CDATA #IMPLIED >
+
+<!ELEMENT EmailAddress
+           ( #PCDATA ) >
+
+<!ELEMENT facsimileNumber
+           ( CommunicationsNumber ) > 
+
+<!ELEMENT CommunicationsNumber
+           ( #PCDATA ) >
+
+<!ELEMENT telephoneNumber
+            ( CommunicationsNumber ) > 
+
+<!ELEMENT GlobalPartnerRoleClassificationCode
+           ( #PCDATA ) >
+
+<!ELEMENT PartnerDescription ( 
+          BusinessDescription ,
+          GlobalPartnerClassificationCode? ,
+          PhysicalAddress? ) > 
+
+<!ELEMENT BusinessDescription ( 
+          GlobalBusinessIdentifier ,
+          GlobalSupplyChainCode? ) > 
+
+<!ELEMENT GlobalBusinessIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalSupplyChainCode
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalPartnerClassificationCode
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalDocumentFunctionCode
+           ( #PCDATA ) >
+
+<!ELEMENT thisDocumentGenerationDateTime
+           ( DateTimeStamp ) > 
+
+<!ELEMENT DateTimeStamp
+           ( #PCDATA ) >
+
+<!ELEMENT thisDocumentIdentifier
+           ( ProprietaryDocumentIdentifier ) > 
+
+<!ELEMENT ProprietaryDocumentIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT toRole
+            ( PartnerRoleDescription ) > 
+
+<!ELEMENT WorkInProcess ( 
+          eventDate ,
+          GlobalWorkInProcessTypeCode ,
+          isPreviousNotificationSuperceded ,
+          manufacturedBy ,
+          manufacturingLine? ,
+          ProcessRouting,
+(           InverseManufacturingLot |
+           ManufacturingLot ) ) > 
+
+<!ELEMENT eventDate
+           ( DateStamp ) > 
+
+<!ELEMENT DateStamp
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalWorkInProcessTypeCode
+           ( #PCDATA ) >
+
+<!ELEMENT isPreviousNotificationSuperceded
+           ( AffirmationIndicator ) > 
+
+<!ELEMENT AffirmationIndicator
+           ( #PCDATA ) >
+
+<!ELEMENT manufacturedBy
+            ( PartnerDescription ) > 
+
+<!ELEMENT PhysicalAddress ( 
+          GlobalLocationIdentifier ) > 
+
+<!ELEMENT GlobalLocationIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT manufacturingLine
+            ( FreeFormText ) > 
+
+<!ELEMENT InverseManufacturingLot ( 
+          primaryLot ) > 
+
+<!ELEMENT primaryLot
+            ( Lot | Association ) > 
+<!ATTLIST primaryLot
+           %common-attributes; > 
+
+<!ELEMENT Lot ( (
+          DieQuantity? ,
+          GlobalLotCode ,
+          GlobalLotQuantityClassificationCode ,
+          GlobalLotStatusCode ,
+          GlobalPriorityCode? ,
+          LotLocation+ ,
+          lotProbeYield ,
+          LotShipment ,
+          LotTypeQuantity? ,
+          manufacturingLotDate ,
+          OrderReference ,
+          PreviousLot? ,
+          ProductIdentification ,
+          projectedFinalLotQuantity? ,
+          ProprietaryLotIdentifier ,
+          ProprietaryPartInformation* ,
+          SubLot* ,
+          transferManufacturingTo? ,
+          transferToManufacturingLine? ,
+          lotQuantity? ) | Association ) > 
+<!ATTLIST Lot
+           %common-attributes; > 
+
+<!ELEMENT DieQuantity ( 
+          grossDieQuantity ,
+          netDieQuantity ) > 
+
+<!ELEMENT grossDieQuantity
+           ( ProductQuantity ) > 
+
+<!ELEMENT ProductQuantity
+           ( #PCDATA ) >
+
+<!ELEMENT netDieQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT GlobalLotCode
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalLotQuantityClassificationCode
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalLotStatusCode
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalPriorityCode
+           ( #PCDATA ) >
+
+<!ELEMENT LotLocation ( 
+          GlobalWorkInProcessLocationCode ,
+          ProductQuantity ) > 
+
+<!ELEMENT GlobalWorkInProcessLocationCode
+           ( #PCDATA ) >
+
+<!ELEMENT lotProbeYield
+           ( CountableAmount ) > 
+
+<!ELEMENT CountableAmount
+           ( #PCDATA ) >
+
+<!ELEMENT LotShipment ( 
+          originalScheduledShipDate ,
+          originalScheduledShipQuantity ,
+          scheduledShipDate ,
+          scheduledShipQuantity ,
+          shipDate? ,
+          shippedQuantity? ) > 
+
+<!ELEMENT originalScheduledShipDate
+            ( DateStamp ) > 
+
+<!ELEMENT originalScheduledShipQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT scheduledShipDate
+            ( DateStamp ) > 
+
+<!ELEMENT scheduledShipQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT shipDate
+            ( DateStamp ) > 
+
+<!ELEMENT shippedQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT LotTypeQuantity ( 
+          dieQuantity? ,
+          waferQuantity? ) > 
+
+<!ELEMENT dieQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT waferQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT manufacturingLotDate
+            ( DatePeriod ) > 
+
+<!ELEMENT DatePeriod ( 
+          beginDate ,
+          endDate? ) > 
+
+<!ELEMENT beginDate
+            ( DateStamp ) > 
+
+<!ELEMENT endDate
+            ( DateStamp ) > 
+
+<!ELEMENT OrderReference ( 
+          DocumentLineReference+ ,
+          workOrderCompletedPercent? ) > 
+
+<!ELEMENT DocumentLineReference ( 
+          GlobalDocumentReferenceTypeCode ,
+          LineNumber ,
+          ProprietaryDocumentIdentifier ) > 
+
+<!ELEMENT GlobalDocumentReferenceTypeCode
+           ( #PCDATA ) >
+
+<!ELEMENT LineNumber
+           ( #PCDATA ) >
+
+<!ELEMENT workOrderCompletedPercent
+           ( PercentAmount ) > 
+
+<!ELEMENT PercentAmount
+           ( #PCDATA ) >
+
+<!ELEMENT PreviousLot ( 
+          previousLotIdentifier ,
+          previousLotType? ,
+          previousLotTypeQuantity? ,
+          previousLotQuantity? ) > 
+
+<!ELEMENT previousLotIdentifier
+           ( ProprietaryLotIdentifier ) > 
+
+<!ELEMENT ProprietaryLotIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT previousLotType
+            ( GlobalLotCode ) > 
+
+<!ELEMENT previousLotTypeQuantity
+            ( LotTypeQuantity ) > 
+
+<!ELEMENT ProductIdentification ( 
+          GlobalProductIdentifier? ,
+          PartnerProductIdentification* ) > 
+
+<!ELEMENT GlobalProductIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT PartnerProductIdentification ( 
+          GlobalPartnerClassificationCode ,
+          ProprietaryProductIdentifier ) > 
+
+<!ELEMENT ProprietaryProductIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT projectedFinalLotQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT ProprietaryPartInformation ( 
+          GlobalWorkInProcessPartTypeCode ,
+          ProprietaryPartIdentifier ) > 
+
+<!ELEMENT GlobalWorkInProcessPartTypeCode
+           ( #PCDATA ) >
+
+<!ELEMENT ProprietaryPartIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT SubLot ( 
+          Lot* ,
+          producedProduct? ) > 
+
+<!ELEMENT producedProduct
+            ( ProductIdentification ) > 
+
+<!ELEMENT transferManufacturingTo
+            ( PartnerDescription ) > 
+
+<!ELEMENT transferToManufacturingLine
+            ( FreeFormText ) > 
+
+<!ELEMENT ManufacturingLot ( 
+          primaryLot ) > 
+
+<!ELEMENT lotQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT previousLotQuantity
+            ( ProductQuantity ) > 
+
+<!ELEMENT ProcessRouting ( 
+          previousProcessRoutingDescription? ,
+          processRoutingDescription ,
+          WorkInProcessStage ) > 
+
+<!ELEMENT previousProcessRoutingDescription
+            ( FreeFormText ) > 
+
+<!ELEMENT processRoutingDescription
+            ( FreeFormText ) > 
+
+<!ELEMENT WorkInProcessStage ( 
+          workInProcessStageName? ,
+          WorkInProcessStep+ ) > 
+
+<!ELEMENT workInProcessStageName
+            ( FreeFormText ) > 
+
+<!ELEMENT WorkInProcessStep ( 
+          alternateResourceIdentifier? ,
+          GlobalEquipmentTypeCode? ,
+          inverseYield? ,
+          previousStepNumber? ,
+          resourceIdentifier? ,
+          resourceType? ,
+          stepNumber? ,
+          workInProcessStepName? ,
+          yield? ) > 
+
+<!ELEMENT alternateResourceIdentifier
+           ( ProprietaryReferenceIdentifier ) > 
+
+<!ELEMENT ProprietaryReferenceIdentifier
+           ( #PCDATA ) >
+
+<!ELEMENT GlobalEquipmentTypeCode
+           ( #PCDATA ) >
+
+<!ELEMENT inverseYield
+            ( CountableAmount ) > 
+
+<!ELEMENT previousStepNumber
+            ( LineNumber ) > 
+
+<!ELEMENT resourceIdentifier
+            ( ProprietaryReferenceIdentifier ) > 
+
+<!ELEMENT resourceType
+            ( FreeFormText ) > 
+
+<!ELEMENT stepNumber
+            ( LineNumber ) > 
+
+<!ELEMENT workInProcessStepName
+            ( FreeFormText ) > 
+
+<!ELEMENT yield
+            ( CountableAmount ) > 
+
+<!ELEMENT Association      EMPTY>
+<!ATTLIST Association
+          reference   ID  #REQUIRED>
+
